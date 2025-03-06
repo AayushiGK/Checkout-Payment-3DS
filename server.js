@@ -18,7 +18,9 @@ app.use(
 );
 app.options("*", cors());
 
-const SECRET_KEY = "sk_sbox_v3xxm6vjru2gtmoidtey2xk5eus"; // Replace with your actual secret key
+const {SECRET_KEY, PROCESSING_CHANNEL_ID} = process.env // Replace with your actual secret key
+
+
 
 // Serve static files (for 3DS HTML)
 app.use(express.static(path.join(__dirname, "public")));
@@ -40,7 +42,7 @@ app.post("/post-payment-sessions", async (_req, res) => {
           currency: "GBP",
           reference: "ORD-123A",
           description: "Payment for Guitars and Amps",
-          processing_channel_id: "pc_dp5zvtaq6veundn7ocv7dl5rmu",
+          processing_channel_id: PROCESSING_CHANNEL_ID,
           "3ds": {
             enabled: true,
             attempt_n3d: true,

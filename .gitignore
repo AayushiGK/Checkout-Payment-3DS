@@ -1,0 +1,11 @@
+# Exclude modules
+/node_modules
+
+# Testing
+/coverage
+
+# Production
+/build
+
+# Secrets 
+.env.local
