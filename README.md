@@ -103,15 +103,21 @@ node server.js
 ---
 
 ## **📌 Expected API Response (For Debugging)**
+
+**POST** :  "https://api.sandbox.checkout.com/payment-sessions"
+**Header** 
 ```json
-POST :  "https://api.sandbox.checkout.com/payment-sessions"
-Header : {
+{
           Authorization: `Bearer ${SECRET_KEY}`,
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
         }
-Body : {
+```
+
+**Body** 
+```json
+{
           amount: 6540,
           currency: "GBP",
           reference: "ORD-123A",
