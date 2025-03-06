@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Secure Authentication</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+      }
+      .container {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        max-width: 400px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #333;
+      }
+      p {
+        color: #666;
+      }
+      .button {
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .success {
+        background-color: #4caf50;
+        color: white;
+      }
+      .failure {
+        background-color: #f44336;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>3D Secure Authentication</h2>
+      <p>Authenticating your payment...</p>
+
+      <p>Click below to simulate the outcome:</p>
+      <button class="button success" onclick="redirectToResult('succeeded')">
+        Authenticate Successfully
+      </button>
+      <button class="button failure" onclick="redirectToResult('failed')">
+        Fail Authentication
+      </button>
+    </div>
+
+    <script>
+      function redirectToResult(status) {
+        const message = { status: status };
+
+        // Send message to parent window
+        if (window.opener) {
+          window.opener.postMessage(message, "*");
+        }
+
+        // Close the 3DS window
+        window.close();
+      }
+    </script>
+  </body>
+</html>
