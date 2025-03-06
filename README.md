@@ -3,6 +3,16 @@
 ## Overview
 This project implements a **3D Secure (3DS) payment flow** using **Checkout.com** APIs. It consists of a **backend (`server.js`)** that interacts with Checkout.com to create and retrieve payment sessions, and a **frontend (`App.jsx`)** that handles user interactions, processes payments, and listens for 3DS authentication events. A **dummy 3DS page (`dummy-3ds.html`)** is used to simulate the challenge process.
 
+## Create Checkout Account for API Keys.
+- Visit [checkout.com](https://www.checkout.com/)
+- Click **Sign In** on the top right corner.
+- Start with the Test environment.
+- Once you are logged in Do to developer tools from the top right icons presented on the screen. **Developer Tools icon </>**
+- In the key Section Create A secret Key With 2 parameters Required. (Can also opt for all at onces not issues with that.)
+  1. Payment-session
+  2. Vault:Tokenization
+- Keep the Key save as its not visible again due to Security reasons. Also Not the Processing Channel ID. 
+
 ---
 
 ## Project Structure
@@ -108,48 +118,47 @@ node server.js
 **Header** 
 ```json
 {
-          Authorization: `Bearer ${SECRET_KEY}`,
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          Accept: "application/json",
-        }
+  Authorization: `Bearer ${SECRET_KEY}`,
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+}
 ```
 
 **Body** 
 ```json
 {
-          amount: 6540,
-          currency: "GBP",
-          reference: "ORD-123A",
-          description: "Payment for Guitars and Amps",
-          processing_channel_id: PROCESSING_CHANNEL_ID,
-          "3ds": {
-            enabled: true,
-            attempt_n3d: true,
-          },
-          success_url: "http://localhost:5173/?status=succeeded",
-          failure_url: "http://localhost:5173/?status=failed",
-          billing: {
-            address: {
-              address_line1: "123 High St.",
-              country: "GB",
-            },
-          },
-          customer: {
-            name: "Jia Tsang",
-            email: "jia.tsang@example.com",
-          },
-        }
+  amount: 600,
+  currency: "INR",
+  reference: "ORD-123A",
+  description: "Payment for Amps",
+  processing_channel_id: PROCESSING_CHANNEL_ID,
+  "3ds": {
+    enabled: true,
+    attempt_n3d: true,
+  },
+  success_url: "http://localhost:5173/?status=succeeded",
+  failure_url: "http://localhost:5173/?status=failed",
+  billing: {
+    address: {
+    address_line1: "--------",
+    country: "INR",
+    },
+  },
+  customer: {
+    name: "ABC Xyz",
+    email: "abc.xyz@example.com",
+  },
+}
 ```
 ### **✅ Successful Payment Session Response**
 ```json
 {
-  "id": "ps_2tuKaWKgwKWz8gkVG5Tfq5xe4In",
-  "payment_session_secret": "pss_5376b99f-c1b8-4262-acd4-8cdcf05fa9e3",
+  "id": "ps_2tu----------",
+  "payment_session_secret": "pss_5376b99----------",
   "status": "Pending",
   "next_action": {
     "type": "redirect",
-    "redirect_url": "https://sandbox.checkout.com/3ds/challenge?session_id=ps_2tuKaWKgwKWz8gkVG5Tfq5xe4In"
+    "redirect_url": "https://sandbox.checkout.com/3ds/challenge?session_id=ps_2tu-----------"
   }
 }
 ```
