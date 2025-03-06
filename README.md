@@ -103,7 +103,7 @@ node server.js
 ---
 
 ## **📌 Expected API Response (For Debugging)**
-
+```json
 POST :  "https://api.sandbox.checkout.com/payment-sessions"
 Header : {
           Authorization: `Bearer ${SECRET_KEY}`,
@@ -134,6 +134,7 @@ Body : {
             email: "jia.tsang@example.com",
           },
         }
+```
 ### **✅ Successful Payment Session Response**
 ```json
 {
